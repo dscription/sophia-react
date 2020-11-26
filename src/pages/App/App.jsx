@@ -26,7 +26,6 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
-    console.log(user.topics);
     return (
       <>
         <NavBar user={user} handleLogout={this.handleLogout} />
