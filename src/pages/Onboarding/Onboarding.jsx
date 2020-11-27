@@ -12,7 +12,10 @@ const Card = styled.div`
   border: solid 2px black;
 `;
 
-
+const Container = styled.div`
+  text-align: center;
+  padding: 10px auto;
+`;
 
 class Onboarding extends Component {
   state = {
@@ -23,7 +26,8 @@ class Onboarding extends Component {
   handleSubmit = async () => {
     console.log('done', this.state.topics);
     // TODO: Make call to backend, send topics, and create new Topics from array of topics.
-    const newTopics = await topicAPI.createMultiple(this.state.topics)
+    const newTopics = await topicAPI.createMultiple(this.state.topics);
+    this.props.handleCompleteOnboarding()
   };
 
   handleAddTopic = (e) => {
@@ -40,8 +44,9 @@ class Onboarding extends Component {
 
   render() {
     const { topics } = this.state;
+
     return (
-      <>
+      <Container>
         <h1>Onboarding Page!</h1>
         <h2>Welcome! Tell us about all the things you would like to learn!</h2>
         <Form onSubmit={this.handleAddTopic}>
@@ -71,7 +76,7 @@ class Onboarding extends Component {
           <Card key={idx}>{topic}</Card>
         ))}
         <Button onClick={this.handleSubmit}>Done For Now</Button>
-      </>
+      </Container>
     );
   }
 }

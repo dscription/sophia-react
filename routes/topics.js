@@ -7,7 +7,7 @@ const topicsCtrl = require('../controllers/topics');
 
 /*---------- Protected Routes ----------*/
 router.use(require("../config/auth"));
-// router.get("/", checkAuth, topicsCtrl.index);
+router.get("/", checkAuth, topicsCtrl.index);
 router.post("/",checkAuth, topicsCtrl.createMultiple)
 
 

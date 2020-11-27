@@ -1,6 +1,5 @@
-import tokenService from "../services/tokenService";
-const BASE_URL = "/api/topics/";
-
+import tokenService from '../services/tokenService';
+const BASE_URL = '/api/topics/';
 
 export function createMultiple(data) {
   return fetch(
@@ -11,8 +10,22 @@ export function createMultiple(data) {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + tokenService.getToken(),
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     },
-    {mode: 'cors'}
+    { mode: 'cors' }
+  ).then((res) => res.json());
+}
+
+export function getUsersTopics() {
+  return fetch(
+    BASE_URL,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + tokenService.getToken(),
+      },
+    },
+    { mode: 'cors' }
   ).then((res) => res.json())
 }
