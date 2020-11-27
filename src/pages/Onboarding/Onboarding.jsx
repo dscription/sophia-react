@@ -3,6 +3,13 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
+import styled from 'styled-components'
+
+const Card = styled.div`
+  text-align: center;
+  margin: 0px auto;
+  border: solid 2px black;
+`
 
 class Onboarding extends Component {
   state = {
@@ -58,7 +65,7 @@ class Onboarding extends Component {
         <Button onClick={this.handleSubmit}>Done For Now</Button>
         {/* // TODO: Render all topics in a box. */}
         {topics.map((topic,idx) => (
-          <h1 key={idx}>{topic}</h1>
+          <Card key={idx}>{topic}</Card>
         ))}
       </>
     );
