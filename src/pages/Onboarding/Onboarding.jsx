@@ -3,13 +3,16 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import * as topicAPI from '../../services/topicService';
 
 const Card = styled.div`
   text-align: center;
   margin: 0px auto;
   border: solid 2px black;
-`
+`;
+
+
 
 class Onboarding extends Component {
   state = {
@@ -17,9 +20,10 @@ class Onboarding extends Component {
     topics: [],
   };
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     console.log('done', this.state.topics);
     // TODO: Make call to backend, send topics, and create new Topics from array of topics.
+    const newTopics = await topicAPI.createMultiple(this.state.topics)
   };
 
   handleAddTopic = (e) => {
@@ -27,7 +31,7 @@ class Onboarding extends Component {
     const topics = [...this.state.topics];
     topics.push(this.state.value);
     this.setState({ topics });
-    this.setState({value: ""})
+    this.setState({ value: '' });
   };
 
   handleInputChange = (e) => {
@@ -35,7 +39,7 @@ class Onboarding extends Component {
   };
 
   render() {
-    const {topics} = this.state
+    const { topics } = this.state;
     return (
       <>
         <h1>Onboarding Page!</h1>
@@ -62,11 +66,11 @@ class Onboarding extends Component {
             </InputGroup>
           </Form.Group>
         </Form>
-        <Button onClick={this.handleSubmit}>Done For Now</Button>
         {/* // TODO: Render all topics in a box. */}
-        {topics.map((topic,idx) => (
+        {topics.map((topic, idx) => (
           <Card key={idx}>{topic}</Card>
         ))}
+        <Button onClick={this.handleSubmit}>Done For Now</Button>
       </>
     );
   }
