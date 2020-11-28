@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const topicsCtrl = require('../controllers/topics');
+const contentsCtrl = require('../controllers/contents');
 
 /*---------- Public Routes ----------*/
 
 /*---------- Protected Routes ----------*/
 router.use(require('../config/auth'));
-router.get('/', checkAuth, topicsCtrl.index);
-router.post('/', checkAuth, topicsCtrl.createMultiple);
-router.get('/:topicId', checkAuth, topicsCtrl.getTopicContents);
+router.get('/', checkAuth, contentsCtrl.index);
+router.post('/:topicId', checkAuth, contentsCtrl.create);
+// router.get('/:topicId', checkAuth, contentsCtrl.getTopicContents )
 
 /*---------- Auth Checker ----------*/
 function checkAuth(req, res, next) {

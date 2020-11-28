@@ -1,14 +1,13 @@
 import tokenService from '../services/tokenService';
-const BASE_URL = '/api/topics/';
+const BASE_URL = '/api/contents/';
 
-export function createMultiple(data) {
+export function createContent(data, topicId) {
   return fetch(
-    BASE_URL,
+    `${BASE_URL}/${topicId}`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
         Authorization: 'Bearer ' + tokenService.getToken(),
       },
       body: JSON.stringify(data),
@@ -17,23 +16,9 @@ export function createMultiple(data) {
   ).then((res) => res.json());
 }
 
-export function getUsersTopics() {
+export function getAllContent() {
   return fetch(
     BASE_URL,
-    {
-      method: 'GET',
-      headers: {
-        // 'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + tokenService.getToken(),
-      },
-    },
-    { mode: 'cors' } 
-  ).then((res) => res.json())
-}
-
-export function getTopicContents(topicId) {
-  return fetch(
-    `${BASE_URL}/${topicId}`,
     {
       method: 'GET',
       headers: {
@@ -43,3 +28,18 @@ export function getTopicContents(topicId) {
     { mode: 'cors' }
   ).then((res) => res.json());
 }
+
+
+// May need to remove due to being int he wrong place.
+// export function getTopicContents(topicId) {
+//   return fetch(
+//     `${BASE_URL}/${topicId}`,
+//     {
+//       method: 'GET',
+//       headers: {
+//         Authorization: 'Bearer ' + tokenService.getToken(),
+//       },
+//     },
+//     { mode: 'cors' }
+//   ).then((res) => res.json());
+// }

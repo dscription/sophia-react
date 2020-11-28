@@ -62,7 +62,6 @@ class Onboarding extends Component {
               <InputGroup.Append>
                 <Button
                   type="submit"
-                  // onSubmit={this.handleAddTopic}
                   variant="outline-secondary"
                 >
                   Add
