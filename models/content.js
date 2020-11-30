@@ -12,6 +12,7 @@ const contentSchema = new Schema(
     notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
     isCompleted: { type: Boolean, default: false },
     isUrgent: { type: Boolean, default: false },
+    todos: [String]
   },
   {
     timestamps: true,
