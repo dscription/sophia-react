@@ -7,12 +7,15 @@ const OuterContainer = styled.div`
   align-items: center;
   text-align: center;
   background-color: grey;
+  height: 100vh;
+  min-width: 1200px;
 `;
 
 const TopicsContainer = styled.div`
-  align-items: center;
+  align-items: flex-start;
   background-color: lightblue;
   display: flex;
+  height: 100%
 `;
 
 

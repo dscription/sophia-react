@@ -8,6 +8,7 @@ const contentsCtrl = require('../controllers/contents');
 router.use(require('../config/auth'));
 router.get('/', checkAuth, contentsCtrl.index);
 router.post('/:topicId', checkAuth, contentsCtrl.create);
+router.put('/:contentId', checkAuth, contentsCtrl.update)
 // router.get('/:topicId', checkAuth, contentsCtrl.getTopicContents )
 
 /*---------- Auth Checker ----------*/

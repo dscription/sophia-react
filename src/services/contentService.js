@@ -29,6 +29,21 @@ export function getAllContent() {
   ).then((res) => res.json());
 }
 
+export function updateContent(data, contentId) {
+  console.log('hit updateContent route')
+  return fetch(
+    `${BASE_URL}${contentId}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + tokenService.getToken(),
+      },
+      body: JSON.stringify(data),
+    },
+    {mode: 'cors'}
+  ).then((res) => res.json())
+}
 
 // May need to remove due to being int he wrong place.
 // export function getTopicContents(topicId) {

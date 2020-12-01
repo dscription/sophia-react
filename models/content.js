@@ -13,7 +13,7 @@ const contentSchema = new Schema(
     name: String,
     method: {
       type: String,
-      enum: ['book', 'video', 'article', 'online course'],
+      // enum: ['book', 'video', 'article', 'online course'],
     },
     link: String,
     notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],

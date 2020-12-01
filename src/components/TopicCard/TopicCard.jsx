@@ -8,17 +8,45 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import * as contentAPI from '../../services/contentService';
 import * as topicAPI from '../../services/topicService';
+import styled from 'styled-components';
+
+const CardColumn = styled.div`
+  width: '200px';
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 20px 20px;
+  box-sizing: border-box;
+`;
+
+const CardBody = styled.div`
+  padding: 10px;
+`;
+
+const Header = styled.div`
+  background-color: grey;
+  height: 40px;
+  border: 1px solid black;
+  ${'' /* border-radius: 5px; */}
+`;
 
 class TopicCard extends Component {
   state = {
     contents: topicAPI.getTopicContents(this.props.topic._id),
     value: '',
+    formData: {
+      name: '',
+    },
   };
 
   handleAddContent = async (e) => {
     e.preventDefault();
+    const { formData } = this.state;
     const newContent = await contentAPI.createContent(
-      { name: this.state.value },
+      formData,
       this.props.topic._id
     );
     this.setState({
@@ -28,7 +56,9 @@ class TopicCard extends Component {
   };
 
   handleInputChange = (e) => {
-    this.setState({ value: e.target.value });
+    const formData = this.state.formData;
+    formData.name = e.target.value;
+    this.setState({ formData: formData });
   };
 
   async componentWillMount() {
@@ -41,17 +71,11 @@ class TopicCard extends Component {
     const { topic } = this.props;
     const { contents } = this.state;
     return (
-      <Card
-        style={{
-          width: '200px',
-          height: '450px',
-          margin: '10px auto',
-        }}
-      >
-        <Card.Header>
-          <>{topic.name}</>
-        </Card.Header>
-        <Card.Body>
+      <CardColumn>
+        <Header>
+          <div>{topic.name}</div>
+        </Header>
+        <CardBody>
           <Form onSubmit={this.handleAddContent}>
             <Form.Group controlId="add-content">
               <InputGroup>
@@ -60,7 +84,7 @@ class TopicCard extends Component {
                   aria-label="add-content"
                   aria-describedby="add-content"
                   onChange={this.handleInputChange}
-                  value={this.state.value}
+                  value={this.state.formData.name}
                 />
                 <InputGroup.Append>
                   <Button type="submit" variant="outline-secondary">
@@ -79,8 +103,8 @@ class TopicCard extends Component {
           ) : (
             <span>No Content Yet</span>
           )}
-        </Card.Body>
-      </Card>
+        </CardBody>
+      </CardColumn>
     );
   }
 }

@@ -4,44 +4,35 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
+import * as contentAPI from '../../services/contentService';
 
 const Container = styled.div`
-  margin: 10px 10px;
-  padding: 0px 20px;
+  margin: 10px 100px;
+  padding: 20px 100px;
   align-items: center;
   text-align: center;
+  border: 1px solid grey;
+  border-radius: 10px;
 `;
 
 class ExpandedContent extends Component {
   state = {
     formData: {
-      name: this.props.location.state.name,
-      method: {
-        type: '',
-      },
-      link: this.props.location.state.link
-        ? this.props.location.state.link
-        : '',
-      notes: this.props.location.state.notes
-        ? this.props.location.state.notes
-        : [],
-      todos: [],
-      isCompleted: this.props.location.state.isCompleted,
-      isUrgent: this.props.location.state.isUrgent,
+      ...this.props.location.state,
     },
     newTodoValue: '',
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submitting form');
-  };
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('submitting form');
+  // };
 
   handleSelectContentType = (e) => {
     e.preventDefault();
     const contentType = e.target.value;
     const formData = this.state.formData;
-    formData.method.type = contentType;
+    formData.method = contentType;
     this.setState({ formData: formData });
   };
 
@@ -82,11 +73,20 @@ class ExpandedContent extends Component {
   };
 
   handleToggleTodo = (e) => {
-    const todoIndex = e.target.value
+    const todoIndex = e.target.value;
     const formData = this.state.formData;
-    formData.todos[todoIndex].isDone = !formData.todos[todoIndex].isDone
-    this.setState({formData: formData})
-  }
+    formData.todos[todoIndex].isDone = !formData.todos[todoIndex].isDone;
+    this.setState({ formData: formData });
+  };
+
+  handlePersistContentInfo = async () => {
+    // send formData from state to service function calling PUT request to back end to update content.
+    console.log('update content card clicked');
+    const { _id } = this.props.location.state;
+    const { formData } = this.state;
+    const savedContent = await contentAPI.updateContent(formData, _id);
+    console.log(savedContent);
+  };
 
   render() {
     const { formData } = this.state;
@@ -97,7 +97,7 @@ class ExpandedContent extends Component {
         {/* Content Name */}
         <h1> {this.props.location.state.name}</h1>
         {/* Edit card From */}
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <Form.Group controlId="selectContentType">
             <Form.Label>Content Type</Form.Label>
             <Form.Control as="select" onChange={this.handleSelectContentType}>
@@ -131,7 +131,7 @@ class ExpandedContent extends Component {
               onChange={this.handleIsCompleted}
             />
           </Form.Group>
-          <Button type="submit">Update Card</Button>
+          <Button onClick={this.handlePersistContentInfo}>Update Card</Button>
         </Form>
         {/* Todo List */}
         <h1>ToDo List</h1>
@@ -149,11 +149,20 @@ class ExpandedContent extends Component {
           {/* // Render Todos */}
           {todos.length > 0 ? (
             todos.map((todo, idx) => (
-              <Form.Check key={idx} type="checkbox" label={todo.name} onClick={this.handleToggleTodo} value={idx}/>
+              <Form.Check
+                key={idx}
+                type="checkbox"
+                label={todo.name}
+                onClick={this.handleToggleTodo}
+                value={idx}
+              />
             ))
           ) : (
             <h1>No todos just yet</h1>
           )}
+          <Button onClick={this.handlePersistContentInfo}>
+            Update ToDo List
+          </Button>
         </Form>
       </Container>
     );
