@@ -1,7 +1,7 @@
 import React, { Component, useState, useRef, Suspense } from 'react';
 import styled from 'styled-components';
 import { Canvas, useFrame, useLoader } from 'react-three-fiber';
-import { OrbitControls } from 'drei';
+import { OrbitControls, Sphere } from 'drei';
 import { a, useSpring } from 'react-spring/three';
 
 
@@ -43,7 +43,7 @@ function Plane() {
   return (
     <mesh
       receiveShadow={true}
-      // rotation={[-Math.PI / 2, 0, 0]}
+      rotation={[-Math.PI / 2, 0, 0]}
       position={[0, -2, -5]}
     >
       <planeBufferGeometry attach="geometry" args={[20, 20]} />
@@ -52,13 +52,17 @@ function Plane() {
   );
 }
 
-function Scene() {
+function Scene({topics}) {
   return (
     <>
       <ambientLight />
       <spotLight castShadow={true} intensity={0.6} position={[0, 10, 4]} />
       <Suspense fallback={null}>
+        {/* // TODO:Render primatives here and Set position and rotation details here */}
         <Cube rotation={[10, 10, 0]} position={[0, 0, 0]} />
+        <Sphere position={[2, 0, 0]}>
+          <meshBasicMaterial attach="material" color="blue" />
+        </Sphere>
       </Suspense>
       <Plane />
       <OrbitControls />
@@ -72,9 +76,8 @@ class ThreeD extends Component {
     const {topics} = this.props
     return (
       <ThreeDContainer>
-        <h1>3D stuff</h1>
         <Canvas>
-          <Scene />
+          <Scene topics={topics} />
         </Canvas>
       </ThreeDContainer>
     );
