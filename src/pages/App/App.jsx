@@ -9,6 +9,7 @@ import authService from '../../services/authService';
 import * as topicAPI from '../../services/topicService'
 import Users from '../Users/Users';
 import ExpandedContent from '../ExpandedContent/ExpandedContent';
+import ExpandedContentRevised from '../ExpandedContent/ExpandedContentRevised'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
@@ -72,7 +73,7 @@ class App extends Component {
         <Route
           exact
           path="/expanded-content"
-          render={({location}) => <ExpandedContent location={location}/>}
+          render={({location}) => <ExpandedContentRevised location={location}/>}
         />
       </>
     );

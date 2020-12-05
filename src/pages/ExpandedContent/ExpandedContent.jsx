@@ -15,6 +15,9 @@ const Container = styled.div`
   border-radius: 10px;
 `;
 
+// const InputGroup = styled.div``
+
+
 class ExpandedContent extends Component {
   state = {
     formData: {
@@ -68,6 +71,7 @@ class ExpandedContent extends Component {
 
   handleChangeTodoValue = (e) => {
     e.preventDefault();
+    console.log(e.target.value)
     const newTodoValue = e.target.value;
     this.setState({ newTodoValue: newTodoValue });
   };

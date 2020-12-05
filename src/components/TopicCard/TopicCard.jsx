@@ -52,7 +52,6 @@ class TopicCard extends Component {
     this.setState({
       contents: await topicAPI.getTopicContents(this.props.topic._id),
     });
-    // call service function to populate all contents in the topic card
   };
 
   handleInputChange = (e) => {
