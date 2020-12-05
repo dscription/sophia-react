@@ -8,7 +8,7 @@ const OuterContainer = styled.div`
   align-items: center;
   text-align: center;
   background-color: grey;
-  height: 50vh;
+  height: 90vh;
   min-width: 1200px;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,6 @@ class Home extends Component {
     const { topics } = this.state;
     return (
       <OuterContainer>
-        <h1>Home Page</h1>
         {/* Passing the loaded user topics to the ThreeD component. */}
         <ThreeD topics={topics} />
         <TopicsContainer>
