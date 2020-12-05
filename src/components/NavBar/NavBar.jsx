@@ -1,31 +1,38 @@
 import React from 'react';
 
+import {
+  Nav,
+  NavItem,
+  RightTag,
+  NavLink,
+} from '../../components/StyledComponents/NavComponents';
+
 const NavBar = ({ user, handleLogout }) => {
-    return (
+  return (
     <>
-      {user ?
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li><a href=" " className="nav-link">Welcome, {user.name}</a></li>
-              <li><a href="/users" className="nav-link">Users</a></li>
-              <li><a href=" " className="nav-link" onClick={handleLogout}>Log Out</a></li>
-            </ul>
-          </div>
-        </nav>
-      :
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li><a href="/login" className="nav-link">Log In</a></li>
-              <li><a href="/users" className="nav-link">Users</a></li>
-              <li><a href="/signup" className="nav-link">Sign Up</a></li>
-            </ul>
-          </div>
-        </nav>
-      }
+      {user ? (
+        <Nav>
+          <NavItem>
+            <NavLink href="">Welcome, {user.name}</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="" onClick={handleLogout}>
+              Log Out
+            </NavLink>
+          </NavItem>
+        </Nav>
+      ) : (
+        <Nav>
+          <NavItem>
+            <NavLink href="/login">Log In</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/signup">Sign Up</NavLink>
+          </NavItem>
+        </Nav>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default NavBar;
