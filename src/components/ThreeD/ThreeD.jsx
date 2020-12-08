@@ -51,6 +51,7 @@ function Scene({ topics }) {
   const startingXPos = -3;
   const spaceBetween = 3;
   const startingZPos = -2;
+  
   return (
     <>
       <ambientLight />
@@ -65,16 +66,26 @@ function Scene({ topics }) {
               position={[(startingXPos + index) * spaceBetween, 0, 0]}
             />
             {topic.contents.map((content, index) => (
-              <Sphere key={index} position={[(startingXPos + index) * spaceBetween, 0, startingZPos]}>
-                <meshBasicMaterial attach="material" color="blue" />
-              </Sphere>
+              <>
+                <Sphere
+                  key={index}
+                  position={[
+                    (startingXPos + index) * spaceBetween,
+                    0,
+                    startingZPos,
+                  ]}
+                >
+                  <meshBasicMaterial attach="material" color="blue" />
+                </Sphere>
+                {content.todos.map((todo, index) => (
+                  <Ring key={index} position={[(startingXPos + index) * spaceBetween, 3, startingZPos]}>
+                    <meshBasicMaterial attach="material" color="orange" />
+                  </Ring>
+                ))}
+              </>
             ))}
           </>
         ))}
-
-        <Ring position={[2, 3, startingZPos]}>
-          <meshBasicMaterial attach="material" color="orange" />
-        </Ring>
       </Suspense>
       <Plane />
       <OrbitControls />
