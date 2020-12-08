@@ -1,16 +1,14 @@
 import React, { Component, useState, useRef, Suspense } from 'react';
 import styled from 'styled-components';
 import { Canvas, useFrame, useLoader } from 'react-three-fiber';
-import { OrbitControls, Sphere } from 'drei';
+import { OrbitControls, Sphere, Ring } from 'drei';
 import { a, useSpring } from 'react-spring/three';
-
 
 const ThreeDContainer = styled.div`
   background-color: white;
   height: 100%;
   width: 100%;
 `;
-
 
 // A Topic will be a Cube
 function Topic(props) {
@@ -22,12 +20,7 @@ function Topic(props) {
   });
 
   return (
-    <a.mesh
-      {...props}
-      ref={ref}
-      castShadow={true}
-      receiveShadow={true}
-    >
+    <a.mesh {...props} ref={ref} castShadow={true} receiveShadow={true}>
       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />/
       <meshPhongMaterial
         flatShading={true}
@@ -54,23 +47,34 @@ function Plane() {
   );
 }
 
-function Scene({topics}) {
-  const startingXPos = -3
-  const spaceBetween = 3
+function Scene({ topics }) {
+  const startingXPos = -3;
+  const spaceBetween = 3;
+  const startingZPos = -2;
   return (
     <>
       <ambientLight />
       <spotLight castShadow={true} intensity={0.6} position={[0, 10, 4]} />
       <Suspense fallback={null}>
         {/* // TODO:Render primatives here and Set position and rotation details here */}
-        {topics.map((topic,index) => (
-          <Topic key={index} rotation={[10, 10, 0]} position={[(startingXPos + index)* spaceBetween, 0, 0]} />
-          
+        {topics.map((topic, index) => (
+          <>
+            <Topic
+              key={index}
+              rotation={[10, 10, 0]}
+              position={[(startingXPos + index) * spaceBetween, 0, 0]}
+            />
+            {topic.contents.map((content, index) => (
+              <Sphere key={index} position={[(startingXPos + index) * spaceBetween, 0, startingZPos]}>
+                <meshBasicMaterial attach="material" color="blue" />
+              </Sphere>
+            ))}
+          </>
         ))}
-        
-        {/* <Sphere position={[2, 0, 0]}>
-          <meshBasicMaterial attach="material" color="blue" />
-        </Sphere> */}
+
+        <Ring position={[2, 3, startingZPos]}>
+          <meshBasicMaterial attach="material" color="orange" />
+        </Ring>
       </Suspense>
       <Plane />
       <OrbitControls />
@@ -81,7 +85,7 @@ function Scene({topics}) {
 class ThreeD extends Component {
   state = {};
   render() {
-    const {topics} = this.props
+    const { topics } = this.props;
     return (
       <ThreeDContainer>
         <Canvas>
