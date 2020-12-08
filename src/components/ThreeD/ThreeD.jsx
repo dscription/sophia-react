@@ -60,9 +60,9 @@ function Scene({topics}) {
       <Suspense fallback={null}>
         {/* // TODO:Render primatives here and Set position and rotation details here */}
         <Cube rotation={[10, 10, 0]} position={[0, 0, 0]} />
-        <Sphere position={[2, 0, 0]}>
+        {/* <Sphere position={[2, 0, 0]}>
           <meshBasicMaterial attach="material" color="blue" />
-        </Sphere>
+        </Sphere> */}
       </Suspense>
       <Plane />
       <OrbitControls />

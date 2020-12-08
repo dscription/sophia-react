@@ -6,10 +6,10 @@ import Login from '../Login/Login';
 import Home from '../Home/Home';
 import Onboarding from '../Onboarding/Onboarding';
 import authService from '../../services/authService';
-import * as topicAPI from '../../services/topicService'
+import * as topicAPI from '../../services/topicService';
 import Users from '../Users/Users';
 import ExpandedContent from '../ExpandedContent/ExpandedContent';
-import ExpandedContentRevised from '../ExpandedContent/ExpandedContentRevised'
+import ExpandedContentRevised from '../ExpandedContent/ExpandedContentRevised';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
@@ -30,10 +30,8 @@ class App extends Component {
   };
 
   handleCompleteOnboarding = () => {
-    this.setState({user: authService.getUser()})
-  }
-
- 
+    this.setState({ user: authService.getUser() });
+  };
 
   render() {
     const { user } = this.state;
@@ -43,7 +41,15 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={() => (user.topics ? <Home /> : <Onboarding handleCompleteOnboarding={this.handleCompleteOnboarding}/>)}
+          render={() =>
+            user.topics ? (
+              <Home />
+            ) : (
+              <Onboarding
+                handleCompleteOnboarding={this.handleCompleteOnboarding}
+              />
+            )
+          }
         />
         <Route
           exact
@@ -73,7 +79,7 @@ class App extends Component {
         <Route
           exact
           path="/expanded-content"
-          render={({location}) => <ExpandedContentRevised location={location}/>}
+          render={({ location }) => <ExpandedContent location={location} />}
         />
       </>
     );

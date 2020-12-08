@@ -17,7 +17,6 @@ const Container = styled.div`
 
 // const InputGroup = styled.div``
 
-
 class ExpandedContent extends Component {
   state = {
     formData: {
@@ -69,9 +68,20 @@ class ExpandedContent extends Component {
     this.setState({ formData: formData });
   };
 
+  handleDeleteTodo = (e) => {
+    e.preventDefault();
+    // use index to splice todo out of state
+    const todoIndex = e.target.value
+    const todos = this.state.formData.todos
+    todos.splice(todoIndex, 1)
+    this.setState({todos:todos})
+    // use id to
+    console.log('todo id',e.target.name);
+  };
+
   handleChangeTodoValue = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
+    console.log(e.target.value);
     const newTodoValue = e.target.value;
     this.setState({ newTodoValue: newTodoValue });
   };
@@ -153,13 +163,21 @@ class ExpandedContent extends Component {
           {/* // Render Todos */}
           {todos.length > 0 ? (
             todos.map((todo, idx) => (
-              <Form.Check
-                key={idx}
-                type="checkbox"
-                label={todo.name}
-                onClick={this.handleToggleTodo}
-                value={idx}
-              />
+              <div key={idx}>
+                <Form.Check
+                  type="checkbox"
+                  label={todo.name}
+                  onClick={this.handleToggleTodo}
+                  value={idx}
+                />
+                <button
+                  name={todo._id}
+                  value={idx}
+                  onClick={this.handleDeleteTodo}
+                >
+                  -
+                </button>
+              </div>
             ))
           ) : (
             <h1>No todos just yet</h1>

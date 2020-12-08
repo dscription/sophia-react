@@ -94,8 +94,8 @@ class TopicCard extends Component {
             </Form.Group>
           </Form>
           {contents.length > 0 ? (
-            contents.map((content) => (
-              <Link to={{ pathname: '/expanded-content', state: content }}>
+            contents.map((content,index) => (
+              <Link key={index} to={{ pathname: '/expanded-content', state: content }}>
                 <ContentCard content={content} />
               </Link>
             ))
