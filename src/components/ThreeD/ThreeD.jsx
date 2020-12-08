@@ -11,7 +11,9 @@ const ThreeDContainer = styled.div`
   width: 100%;
 `;
 
-function Cube(props) {
+
+// A Topic will be a Cube
+function Topic(props) {
   const ref = useRef();
 
   useFrame(() => {
@@ -53,13 +55,19 @@ function Plane() {
 }
 
 function Scene({topics}) {
+  const startingXPos = -3
+  const spaceBetween = 3
   return (
     <>
       <ambientLight />
       <spotLight castShadow={true} intensity={0.6} position={[0, 10, 4]} />
       <Suspense fallback={null}>
         {/* // TODO:Render primatives here and Set position and rotation details here */}
-        <Cube rotation={[10, 10, 0]} position={[0, 0, 0]} />
+        {topics.map((topic,index) => (
+          <Topic key={index} rotation={[10, 10, 0]} position={[(startingXPos + index)* spaceBetween, 0, 0]} />
+          
+        ))}
+        
         {/* <Sphere position={[2, 0, 0]}>
           <meshBasicMaterial attach="material" color="blue" />
         </Sphere> */}

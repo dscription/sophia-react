@@ -11,7 +11,7 @@ const OuterContainer = styled.div`
   height: 90vh;
   min-width: 1200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
 `;
 
 const TopicsContainer = styled.div`

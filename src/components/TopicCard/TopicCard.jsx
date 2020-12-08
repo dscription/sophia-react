@@ -9,29 +9,9 @@ import Form from 'react-bootstrap/Form';
 import * as contentAPI from '../../services/contentService';
 import * as topicAPI from '../../services/topicService';
 import styled from 'styled-components';
+import {CardColumn, CardBody, Header} from '../StyledComponents/TopicCardComponents'
 
-const CardColumn = styled.div`
-  width: '200px';
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin: 20px 20px;
-  box-sizing: border-box;
-`;
 
-const CardBody = styled.div`
-  padding: 10px;
-`;
-
-const Header = styled.div`
-  background-color: grey;
-  height: 40px;
-  border: 1px solid black;
-  ${'' /* border-radius: 5px; */}
-`;
 
 class TopicCard extends Component {
   state = {

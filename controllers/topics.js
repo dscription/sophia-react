@@ -12,6 +12,7 @@ function index(req, res) {
   User.findById(req.user._id)
     .populate({
       path: 'topics',
+      populate: {path: 'contents'}
     })
     .then((populated) => {
       res.status(200).json(populated.topics);
@@ -40,3 +41,7 @@ function getTopicContents(req, res) {
     .populate('contents')
     .then((populated) => res.status(200).json(populated.contents));
 }
+
+// function getAllTopicContents(req, res) {
+//   User.findById(req.user._id)
+// }
