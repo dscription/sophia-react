@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
-import Topics from '../../components/Topics/Topics'
+import Topics from '../../components/Topics/Topics';
 import ThreeD from '../../components/ThreeD/ThreeD';
+import { Container } from '../../components/StyledComponents/GeneralComponents';
+
 import * as topicAPI from '../../services/topicService';
-
-const OuterContainer = styled.div`
-  align-items: center;
-  text-align: center;
-  background-color: grey;
-  height: 90vh;
-  min-width: 1200px;
-  display: flex;
-  flex-direction: column;
-`;
-
-
 
 const Home = () => {
   const [topics, setTopics] = useState('');
@@ -30,14 +18,14 @@ const Home = () => {
   };
 
   return (
-    <OuterContainer>
+    <Container>
       {topics && (
         <>
           <ThreeD topics={topics} />
-          <Topics topics={topics}/>
+          <Topics topics={topics} />
         </>
       )}
-    </OuterContainer>
+    </Container>
   );
 };
 

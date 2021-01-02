@@ -1,13 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
 import TopicCard from '../../components/TopicCard/TopicCard';
+import {TopicsContainer} from '../StyledComponents/GeneralComponents'
 
-const TopicsContainer = styled.div`
-  align-items: flex-start;
-  background-color: lightblue;
-  display: flex;
-  height: 100%;
-`;
+
 
 const Topics = ({ topics }) => {
   return (
