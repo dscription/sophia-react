@@ -1,9 +1,10 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
-const ContentCard = ({ content }) => {
+const ContentCard = ({ content, index }) => {
   return (
-    <>
+    <Link key={index} to={{ pathname: '/content-modal', state: content }}>
       <Card
         style={{
           width: 'auto',
@@ -15,7 +16,7 @@ const ContentCard = ({ content }) => {
           <Card.Text>{content.name}</Card.Text>
         </Card.Body>
       </Card>
-    </>
+    </Link>
   );
 };
 

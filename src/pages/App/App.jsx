@@ -6,10 +6,9 @@ import Login from '../Login/Login';
 import Home from '../Home/Home';
 import Onboarding from '../Onboarding/Onboarding';
 import authService from '../../services/authService';
-import * as topicAPI from '../../services/topicService';
 import Users from '../Users/Users';
-import ExpandedContent from '../ExpandedContent/ExpandedContent';
-import ExpandedContentRevised from '../ExpandedContent/ExpandedContentRevised';
+import ContentModal from '../ContentModal/ContentModal';
+import ContentModalRevised from '../ContentModal/ContentModalRevised';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
@@ -78,8 +77,8 @@ class App extends Component {
         />
         <Route
           exact
-          path="/expanded-content"
-          render={({ location }) => <ExpandedContent location={location} />}
+          path="/content-modal"
+          render={({ location }) => <ContentModal location={location} />}
         />
       </>
     );
