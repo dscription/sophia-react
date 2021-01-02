@@ -51,7 +51,7 @@ function Scene({ topics }) {
   const startingXPos = -3;
   const spaceBetween = 3;
   const startingZPos = -2;
-  
+
   return (
     <>
       <ambientLight />
@@ -66,7 +66,7 @@ function Scene({ topics }) {
               position={[(startingXPos + index) * spaceBetween, 0, 0]}
             />
             {topic.contents.map((content, index) => (
-              <>
+              <> 
                 <Sphere
                   key={index}
                   position={[

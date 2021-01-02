@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import TopicCard from '../../components/TopicCard/TopicCard';
+
+import Topics from '../../components/Topics/Topics'
 import ThreeD from '../../components/ThreeD/ThreeD';
 import * as topicAPI from '../../services/topicService';
 
@@ -11,40 +12,33 @@ const OuterContainer = styled.div`
   height: 90vh;
   min-width: 1200px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 `;
 
-const TopicsContainer = styled.div`
-  align-items: flex-start;
-  background-color: lightblue;
-  display: flex;
-  height: 100%;
-`;
 
-class Home extends Component {
-  state = { topics: [] };
 
-  async componentWillMount() {
+const Home = () => {
+  const [topics, setTopics] = useState('');
+
+  useEffect(() => {
+    getTopics();
+  }, []);
+
+  const getTopics = async () => {
     const topics = await topicAPI.getUsersTopics();
-    this.setState({ topics });
-  }
+    setTopics(topics);
+  };
 
-  render() {
-    const { topics } = this.state;
-    return (
-      <OuterContainer>
-        {/* Passing the loaded user topics to the ThreeD component. */}
-        <ThreeD topics={topics} />
-        <TopicsContainer>
-          {topics ? (
-            topics.map((topic, idx) => <TopicCard key={idx} topic={topic} />)
-          ) : (
-            <h1> no topics yet</h1>
-          )}
-        </TopicsContainer>
-      </OuterContainer>
-    );
-  }
-}
+  return (
+    <OuterContainer>
+      {topics && (
+        <>
+          <ThreeD topics={topics} />
+          <Topics topics={topics}/>
+        </>
+      )}
+    </OuterContainer>
+  );
+};
 
 export default Home;
