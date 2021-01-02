@@ -21,7 +21,7 @@ const Home = () => {
     <Container>
       {topics && (
         <>
-          <ThreeD topics={topics} />
+          {/* <ThreeD topics={topics} /> */}
           <Topics topics={topics} />
         </>
       )}

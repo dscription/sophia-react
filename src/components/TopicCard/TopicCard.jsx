@@ -1,91 +1,33 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
-import ContentCard from '../ContentCard/ContentCard.jsx';
-import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
-import * as contentAPI from '../../services/contentService';
+import AddTopicBar from '../AddTopicBar/AddTopicBar';
+import Contents from '../Contents/Contents';
+
 import * as topicAPI from '../../services/topicService';
-import styled from 'styled-components';
-import {CardColumn, CardBody, Header} from '../StyledComponents/TopicCardComponents'
 
+const TopicCard = ({ topic }) => {
+  const [contents, setContents] = useState('');
 
-
-class TopicCard extends Component {
-  state = {
-    contents: topicAPI.getTopicContents(this.props.topic._id),
-    value: '',
-    formData: {
-      name: '',
-    },
+  const getTopicContents = async (topic) => {
+    const topicContents = await topicAPI.getTopicContents(topic._id);
+    setContents(topicContents);
   };
 
-  handleAddContent = async (e) => {
-    e.preventDefault();
-    const { formData } = this.state;
-    const newContent = await contentAPI.createContent(
-      formData,
-      this.props.topic._id
-    );
-    this.setState({
-      contents: await topicAPI.getTopicContents(this.props.topic._id),
-    });
-  };
+  useEffect(() => {
+    getTopicContents(topic);
+  }, []);
 
-  handleInputChange = (e) => {
-    const formData = this.state.formData;
-    formData.name = e.target.value;
-    this.setState({ formData: formData });
-  };
-
-  async componentWillMount() {
-    this.setState({
-      contents: await topicAPI.getTopicContents(this.props.topic._id),
-    });
-  }
-
-  render() {
-    const { topic } = this.props;
-    const { contents } = this.state;
-    return (
-      <CardColumn>
-        <Header>
-          <div>{topic.name}</div>
-        </Header>
-        <CardBody>
-          <Form onSubmit={this.handleAddContent}>
-            <Form.Group controlId="add-content">
-              <InputGroup>
-                <FormControl
-                  placeholder="add-content"
-                  aria-label="add-content"
-                  aria-describedby="add-content"
-                  onChange={this.handleInputChange}
-                  value={this.state.formData.name}
-                />
-                <InputGroup.Append>
-                  <Button type="submit" variant="outline-secondary">
-                    Add
-                  </Button>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-          </Form>
-          {contents.length > 0 ? (
-            contents.map((content,index) => (
-              <Link key={index} to={{ pathname: '/expanded-content', state: content }}>
-                <ContentCard content={content} />
-              </Link>
-            ))
-          ) : (
-            <span>No Content Yet</span>
-          )}
-        </CardBody>
-      </CardColumn>
-    );
-  }
-}
+  return (
+    <Card style={{ height: '90%' }}>
+      <Card.Title>
+        <div>{topic.name}</div>
+      </Card.Title>
+      <Card.Body>
+        <AddTopicBar topic={topic} getTopicContents={getTopicContents} />
+        <Contents contents={contents} />
+      </Card.Body>
+    </Card>
+  );
+};
 
 export default TopicCard;
