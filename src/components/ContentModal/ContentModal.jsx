@@ -23,8 +23,10 @@ const ContentModal = ({ content, index }) => {
 
   return (
     <>
-      <Button onClick={handleShow}>{content.name}</Button>
-      <Modal show={show} onHide={handleClose}>
+      <Button style={{ margin: '5px 0px' }} onClick={handleShow}>
+        {content.name}
+      </Button>
+      <Modal centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{content.name}</Modal.Title>
         </Modal.Header>

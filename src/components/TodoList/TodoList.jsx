@@ -37,7 +37,7 @@ const TodoList = ({ todos, setTodos }) => {
 
   return (
     <>
-      <h1>ToDo List</h1>
+      <h3>Todo List:</h3>
       <Form>
         <InputGroup>
           <FormControl

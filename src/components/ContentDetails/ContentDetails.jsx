@@ -16,10 +16,9 @@ const ContentDetails = ({ contentDetails, setContentDetails }) => {
     setContentDetails({ ...newContentDetails });
   };
 
-  const { name } = contentDetails;
   return (
     <Form>
-      <h1>{name}</h1>
+    <h3>Details:</h3>
       <Form.Group controlId="selectContentType">
         <Form.Label>Content Type</Form.Label>
         <Form.Control
