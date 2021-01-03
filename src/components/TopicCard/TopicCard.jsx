@@ -18,7 +18,7 @@ const TopicCard = ({ topic }) => {
   }, []);
 
   return (
-    <Card style={{ height: '90%' }}>
+    <Card style={{ height: '90%' }}> 
       <Card.Title>
         <div>{topic.name}</div>
       </Card.Title>

@@ -1,12 +1,12 @@
 import React from 'react';
-import ContentCard from '../ContentCard/ContentCard.jsx';
+import ContentModal from '../ContentModal/ContentModal'
 
 const Contents = ({ contents }) => {
   return (
     <>
       {contents &&
         contents.map((content, index) => (
-          <ContentCard content={content} index={index} />
+          <ContentModal content={content} index={index} />
         ))}
     </>
   );

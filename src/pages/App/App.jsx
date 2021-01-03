@@ -7,8 +7,6 @@ import Home from '../Home/Home';
 import Onboarding from '../Onboarding/Onboarding';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
-import ContentModal from '../ContentModal/ContentModal';
-import ContentModalRevised from '../ContentModal/ContentModalRevised';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
@@ -74,11 +72,6 @@ class App extends Component {
           exact
           path="/users"
           render={() => (user ? <Users /> : <Redirect to="/login" />)}
-        />
-        <Route
-          exact
-          path="/content-modal"
-          render={({ location }) => <ContentModal location={location} />}
         />
       </>
     );
