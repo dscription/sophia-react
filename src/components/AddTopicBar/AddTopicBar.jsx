@@ -27,7 +27,11 @@ const AddTopicBar = ({ topic, getTopicContents }) => {
         value={formData.name}
       />
       <InputGroup.Append>
-        <Button variant="outline-secondary" onClick={handleAddContent}>
+        <Button
+          variant="outline-secondary"
+          onClick={handleAddContent}
+          style={{color: 'white'}}
+        >
           Add
         </Button>
       </InputGroup.Append>

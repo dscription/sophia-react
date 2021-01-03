@@ -1,38 +1,40 @@
 import React from 'react';
 
-import {
-  Nav,
-  NavItem,
-  RightTag,
-  NavLink,
-} from '../../components/StyledComponents/NavComponents';
+import { Navbar, Nav } from 'react-bootstrap';
 
-const NavBar = ({ user, handleLogout }) => {
+const Navigation = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
-        <Nav>
-          <NavItem>
-            <NavLink href="">Welcome, {user.name}</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="" onClick={handleLogout}>
-              Log Out
-            </NavLink>
-          </NavItem>
-        </Nav>
+        <Navbar variant="dark" style={{ background: '#536878' }}>
+          <Navbar.Brand href=""> Sophia</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="">Welcome, {user.name}</Nav.Link>
+              <Nav.Link href="" onClick={handleLogout}>
+                Log Out
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       ) : (
-        <Nav>
-          <NavItem>
-            <NavLink href="/login">Log In</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/signup">Sign Up</NavLink>
-          </NavItem>
-        </Nav>
+        <Navbar
+          variant="dark"
+          style={{ background: '#536878', border: '2px solid white' }}
+        >
+          <Navbar.Brand href=""> Sophia</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/login">Log In</Nav.Link>
+              <Nav.Link href="/signup">Sign Up</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       )}
     </>
   );
 };
 
-export default NavBar;
+export default Navigation;

@@ -3,7 +3,15 @@ import { Col, CardDeck } from 'react-bootstrap';
 
 const Topics = ({ topics }) => {
   return (
-    <CardDeck style={{flexWrap: 'nowrap', padding: '10px 20px', background: 'blue', overflow: 'scroll'}}>
+    <CardDeck
+      bg="light"
+      style={{
+        flexWrap: 'nowrap',
+        padding: '10px 20px',
+        background: '#536878',
+        overflow: 'scroll',
+      }}
+    >
       {topics ? (
         topics.map((topic, idx) => <TopicCard key={idx} topic={topic} />)
       ) : (
