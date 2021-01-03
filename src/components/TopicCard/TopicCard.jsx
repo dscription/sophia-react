@@ -18,7 +18,7 @@ const TopicCard = ({ topic }) => {
   }, []);
 
   return (
-    <Card className="text-center" style={{ height: '90%' }}>
+    <Card className="text-center" style={{ minWidth: '250px' }}>
       <Card.Title>{topic.name}</Card.Title>
       <Card.Body>
         <AddTopicBar topic={topic} getTopicContents={getTopicContents} />
