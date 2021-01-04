@@ -1,11 +1,16 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import authService from "../../services/authService"
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import authService from '../../services/authService';
+import {
+  Container,
+  LoginBox,
+} from '../../components/StyledComponents/CustomComponents/CustomComponents';
+import { Form, Button } from 'react-bootstrap';
 
 class LoginPage extends Component {
   state = {
-    email: "",
-    pw: "",
+    email: '',
+    pw: '',
   };
 
   handleChange = (e) => {
@@ -21,7 +26,7 @@ class LoginPage extends Component {
       await authService.login(this.state);
       // Let <App> know a user has signed up!
       handleSignupOrLogin();
-      history.push("/");
+      history.push('/');
     } catch (err) {
       // Use a modal or toast in your apps instead of alert
       alert('Invalid Credentials!');
@@ -29,35 +34,60 @@ class LoginPage extends Component {
   };
 
   render() {
-    const {email, pw} = this.state
+    const { email, pw } = this.state;
     return (
-      <main className="Login">
-        <h3>Log In</h3>
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
+      <Container>
+        <LoginBox>
+          <h3 style={{ color: 'white' }}>Log In</h3>
+          <Form
             autoComplete="off"
-            id="email"
-            value={email}
-            name="email"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="password"
-            value={pw}
-            name="pw"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <button className="btn green">Log In</button>&nbsp;&nbsp;&nbsp;
-          <Link className="btn red" to="/">
-            Cancel
-          </Link>
-        </form>
-      </main>
+            onSubmit={this.handleSubmit}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '15px',
+              alignItems: 'center',
+            }}
+          >
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={this.handleChange}
+                value={email}
+                name="email"
+              />
+              <Form.Label style={{ color: 'white' }}>Email</Form.Label>
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+                value={pw}
+                name="pw"
+              />
+              <Form.Label style={{ color: 'white' }}>Password</Form.Label>
+            </Form.Group>
+            <Button
+              variant="primary"
+              type="submit"
+              style={{ width: '100px', margin: '0px auto' }}
+            >
+              Log In
+            </Button>
+            &nbsp;&nbsp;&nbsp;
+            <Link className="btn red" to="/">
+              <Button
+                variant="danger"
+                style={{ width: '100px', margin: '0px auto' }}
+              >
+                Cancel
+              </Button>
+            </Link>
+          </Form>
+        </LoginBox>
+      </Container>
     );
   }
 }

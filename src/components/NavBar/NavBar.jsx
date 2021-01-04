@@ -6,7 +6,10 @@ const Navigation = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
-        <Navbar variant="dark" style={{ background: '#536878' }}>
+        <Navbar
+          variant="dark"
+          style={{ background: '#536878', borderBottom: '1px solid #5bc0de' }}
+        >
           <Navbar.Brand href=""> Sophia</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -21,7 +24,10 @@ const Navigation = ({ user, handleLogout }) => {
       ) : (
         <Navbar
           variant="dark"
-          style={{ background: '#536878', border: '2px solid white' }}
+          style={{
+            background: '#536878',
+            borderBottom: '1px solid #5bc0de',
+          }}
         >
           <Navbar.Brand href=""> Sophia</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
