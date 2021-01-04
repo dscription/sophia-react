@@ -11,7 +11,7 @@ class LoginPage extends Component {
   state = {
     email: '',
     pw: '',
-  };
+  }; 
 
   handleChange = (e) => {
     this.setState({
