@@ -96,6 +96,7 @@ class SignupForm extends Component {
             variant="primary"
             style={{ width: '100px', margin: '0px auto' }}
             disabled={this.isFormInvalid()}
+            type="submit"
           >
             Sign Up
           </Button>
@@ -104,7 +105,6 @@ class SignupForm extends Component {
             <Button
               variant="danger"
               style={{ width: '100px', margin: '0px auto' }}
-              type="submit"
             >
               Cancel
             </Button>

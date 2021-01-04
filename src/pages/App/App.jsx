@@ -39,7 +39,7 @@ class App extends Component {
           exact
           path="/"
           render={() =>
-            user.topics ? (
+            user.topics.length > 0 ? (
               <Home />
             ) : (
               <Onboarding
