@@ -6,7 +6,7 @@ import { a, useSpring } from 'react-spring/three';
 
 const ThreeDContainer = styled.div`
   background-color: white;
-  height: 100%;
+  height: 40%;
   width: 100%;
 `;
 
@@ -66,7 +66,7 @@ function Scene({ topics }) {
               position={[(startingXPos + index) * spaceBetween, 0, 0]}
             />
             {topic.contents.map((content, index) => (
-              <> 
+              <>
                 <Sphere
                   key={index}
                   position={[
@@ -78,7 +78,14 @@ function Scene({ topics }) {
                   <meshBasicMaterial attach="material" color="blue" />
                 </Sphere>
                 {content.todos.map((todo, index) => (
-                  <Ring key={index} position={[(startingXPos + index) * spaceBetween, 3, startingZPos]}>
+                  <Ring
+                    key={index}
+                    position={[
+                      (startingXPos + index) * spaceBetween,
+                      3,
+                      startingZPos,
+                    ]}
+                  >
                     <meshBasicMaterial attach="material" color="orange" />
                   </Ring>
                 ))}

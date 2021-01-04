@@ -9,8 +9,6 @@ import authService from '../../services/authService';
 import Users from '../Users/Users';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './App.css';
-
 class App extends Component {
   state = {
     user: authService.getUser(),

@@ -18,14 +18,14 @@ const Home = () => {
   };
 
   return (
-    <Container fluid>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       {topics && (
         <>
-          <ThreeD topics={topics} />
-          <Topics topics={topics} />
+          <ThreeD topics={topics}  />
+          <Topics topics={topics}  />
         </>
       )}
-    </Container>
+    </div>
   );
 };
 

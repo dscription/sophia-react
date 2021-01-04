@@ -1,5 +1,5 @@
 import TopicCard from '../../components/TopicCard/TopicCard';
-import { Col, CardDeck } from 'react-bootstrap';
+import { CardDeck } from 'react-bootstrap';
 
 const Topics = ({ topics }) => {
   return (
@@ -10,6 +10,7 @@ const Topics = ({ topics }) => {
         padding: '10px 20px',
         background: '#536878',
         overflow: 'scroll',
+        height: '50%'
       }}
     >
       {topics ? (
